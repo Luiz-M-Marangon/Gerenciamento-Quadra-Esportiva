@@ -1,4 +1,7 @@
 package gerenciamento.quadra.frameworks.repository;
 
-public interface ServicoRepository {
+import gerenciamento.quadra.frameworks.model.Servico;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ServicoRepository extends JpaRepository<Servico, Long> {
 }

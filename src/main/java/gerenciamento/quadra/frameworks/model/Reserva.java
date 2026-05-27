@@ -42,7 +42,7 @@ public class Reserva {
     private List<Servico> servicos;
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Reserva{id=" + id
                 + ", data='" + data
                 + "', horario inicial=" + horarioInicial

@@ -27,7 +27,11 @@ public class Servico {
 
     @Override
     public String toString(){
-        return "Servico{id=" + id + ", nome='" + nome + "', descricao=" + descricao + ", valor adicional=" + valorAdicional + "}";
+        return "Servico{id=" + id
+                + ", nome='" + nome
+                + "', descricao=" + descricao
+                + ", valor adicional=" + valorAdicional
+                + "}";
     }
 
     public Long getId() {

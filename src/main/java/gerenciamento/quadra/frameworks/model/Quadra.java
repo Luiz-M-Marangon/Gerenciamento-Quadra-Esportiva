@@ -25,4 +25,64 @@ public class Quadra {
 
     @OneToMany(mappedBy = "quadra")
     private List<Reserva> reservas;
+
+    @Override
+    public String toString(){
+        return "Quadra{id=" + id
+                + ", nome= '+" + nome
+                + "', esporte='" + esporte
+                + "', Valor da Hora='" + valorHora
+                + "', Localização='" + localizacao
+                + "', Cobertura=" + coberta
+                + "}";
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getEsporte() {
+        return esporte;
+    }
+
+    public void setEsporte(String esporte) {
+        this.esporte = esporte;
+    }
+
+    public double getValorHora() {
+        return valorHora;
+    }
+
+    public void setValorHora(double valorHora) {
+        this.valorHora = valorHora;
+    }
+
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public Boolean getCoberta() {
+        return coberta;
+    }
+
+    public void setCoberta(Boolean coberta) {
+        this.coberta = coberta;
+    }
 }
