@@ -1,7 +1,7 @@
 package gerenciamento.quadra.frameworks.controller;
 
 import gerenciamento.quadra.frameworks.model.Servico;
-import gerenciamento.quadra.frameworks.service.ServicoAdicionalService;
+import gerenciamento.quadra.frameworks.service.ServicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class ServicoController {
 
     @Autowired
-    private ServicoAdicionalService service;
+    private ServicoService service;
 
     @GetMapping
     public String listar(Model model) {

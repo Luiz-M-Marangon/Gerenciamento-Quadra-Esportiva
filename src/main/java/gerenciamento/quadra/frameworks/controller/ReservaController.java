@@ -4,7 +4,7 @@ package gerenciamento.quadra.frameworks.controller;
 import gerenciamento.quadra.frameworks.model.Reserva;
 import gerenciamento.quadra.frameworks.service.QuadraService;
 import gerenciamento.quadra.frameworks.service.ReservaService;
-import gerenciamento.quadra.frameworks.service.ServicoAdicionalService;
+import gerenciamento.quadra.frameworks.service.ServicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +21,7 @@ public class ReservaController {
     private QuadraService quadraService;
 
     @Autowired
-    private ServicoAdicionalService servicoService;
+    private ServicoService servicoService;
 
     @GetMapping
     public String listar(Model model) {
