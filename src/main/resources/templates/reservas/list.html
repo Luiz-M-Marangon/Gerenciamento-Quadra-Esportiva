@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Reservas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div class="container mt-4">
+    <h1>Reservas</h1>
 
+    <a href="/reservas/nova" class="btn btn-primary mb-3">Nova Reserva</a>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Horário</th>
+            <th>Responsável</th>
+            <th>Quadra</th>
+            <th>Valor Total</th>
+            <th width="180">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${reservas}">
+            <td th:text="${r.id}"></td>
+            <td th:text="${r.data}"></td>
+            <td>
+                <span th:text="${r.horarioInicial}"></span>às<span th:text="${r.horarioFinal}"></span>
+            </td>
+            <td th:text="${r.responsavel}"></td>
+            <td th:text="${r.quadra.nome}"></td>
+            <td th:text="${r.valorTotal}"></td>
+            <td>
+                <a th:href="@{/reservas/editar/{id}(id=${r.id})}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{/reservas/excluir/{id}(id=${r.id})}" class="btn btn-danger btn-sm">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

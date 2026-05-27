@@ -24,6 +24,7 @@ public class Reserva {
     private LocalDate data;
     private LocalTime horarioInicial;
     private LocalTime horarioFinal;
+    private String responsavel;
     private Double valorTotal;
 
     @ManyToOne
