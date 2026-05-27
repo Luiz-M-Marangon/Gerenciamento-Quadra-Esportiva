@@ -1,10 +1,12 @@
 package gerenciamento.quadra.frameworks.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -26,6 +28,7 @@ public class Reserva {
 
     @ManyToOne
     @JoinColumn(name = "quadra_id")
+    @JsonIgnoreProperties("reservas")
     private Quadra quadra;
 
     @ManyToMany
@@ -34,6 +37,7 @@ public class Reserva {
             joinColumns = @JoinColumn(name = "reserva_id"),
             inverseJoinColumns = @JoinColumn(name = "servico_id")
     )
+    @JsonIgnoreProperties("reservas")
     private List<Servico> servicos;
 
     @Override
@@ -44,5 +48,20 @@ public class Reserva {
                 + ", horario final=" + horarioFinal
                 + ", valor total=" + valorTotal
                 + "}";
+    }
+
+    public void calcularValorTotal() {
+
+        long horas = Duration.between(horarioInicial, horarioFinal).toHours();
+
+        double total = quadra.getValorHora() * horas;
+
+        if (servicos != null) {
+            for (Servico s : servicos) {
+                total += s.getValorAdicional();
+            }
+        }
+
+        this.valorTotal = total;
     }
 }

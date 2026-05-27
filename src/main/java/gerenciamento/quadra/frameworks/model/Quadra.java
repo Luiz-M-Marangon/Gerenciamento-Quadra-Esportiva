@@ -1,5 +1,6 @@
 package gerenciamento.quadra.frameworks.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class Quadra {
     private Boolean coberta;
 
     @OneToMany(mappedBy = "quadra")
+    @JsonIgnoreProperties("quadra")
     private List<Reserva> reservas;
 
     @Override
