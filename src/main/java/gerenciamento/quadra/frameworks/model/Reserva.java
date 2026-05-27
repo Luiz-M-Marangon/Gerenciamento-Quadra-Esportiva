@@ -25,10 +25,6 @@ public class Reserva {
     private Double valorTotal;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
-
-    @ManyToOne
     @JoinColumn(name = "quadra_id")
     private Quadra quadra;
 
@@ -46,7 +42,6 @@ public class Reserva {
                 + ", data='" + data
                 + "', horario inicial=" + horarioInicial
                 + ", horario final=" + horarioFinal
-                + ", cliente=" + cliente
                 + ", valor total=" + valorTotal
                 + "}";
     }
