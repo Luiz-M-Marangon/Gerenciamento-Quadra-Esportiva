@@ -20,6 +20,12 @@ public class ClienteService {
     private ReservaRepository reservaRepository;
 
     public Cliente salvar(Cliente cliente){
-        if (cliente.getQuadra)
+        if (cliente.getQuadra() != null && cliente.getQuadra().getId() != null){
+            Quadra quadra = quadraRepository.findById(cliente.getQuadra().getId())
+                    .orElseThrow(() -> new RuntimeException("Quadra não encontrado: " + cliente.getQuadra().getId()));
+            cliente.setQuadra(quadra);
+        } else{
+            cliente.setQuadra(null);
+        }
     }
 }
