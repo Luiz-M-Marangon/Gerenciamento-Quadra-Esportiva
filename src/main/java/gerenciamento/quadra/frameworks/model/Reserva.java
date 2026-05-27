@@ -22,12 +22,11 @@ public class Reserva {
     private LocalDate data;
     private LocalTime horarioInicial;
     private LocalTime horarioFinal;
-    private String cliente;
     private Double valorTotal;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
-    private Cliente clientes;
+    private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "quadra_id")
@@ -35,9 +34,9 @@ public class Reserva {
 
     @ManyToMany
     @JoinTable(
-            name = "resernva_servido",
-            joinColumns = @JoinColumn(name = "resernva_id"),
-            inverseJoinColumns = @JoinColumn(name = "servicp_id")
+            name = "reserva_servico",
+            joinColumns = @JoinColumn(name = "reserva_id"),
+            inverseJoinColumns = @JoinColumn(name = "servico_id")
     )
     private List<Servico> servicos;
 

@@ -2,6 +2,14 @@ package gerenciamento.quadra.frameworks.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 import java.security.Security;
 
@@ -31,9 +39,9 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/", true)
-                        .permiteAll())
+                        .permitAll())
                 .logout(logout -> logout
-                        .logoutsSuccessUrl("/login?logout")
+                        .logoutSuccessUrl("/login?logout")
                         .permitAll())
                 .exceptionHandling(ex -> ex
                         .accessDeniedPage("/403"));
@@ -41,7 +49,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration conifg) throws  Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws  Exception {
         return config.getAuthenticationManager();
     }
 }
