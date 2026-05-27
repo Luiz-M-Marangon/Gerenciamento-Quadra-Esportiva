@@ -1,10 +1,12 @@
 package gerenciamento.quadra.frameworks.service;
 
 import gerenciamento.quadra.frameworks.model.Reserva;
+import gerenciamento.quadra.frameworks.model.Servico;
 import gerenciamento.quadra.frameworks.repository.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.stream.Collectors;
+import gerenciamento.quadra.frameworks.dto.ReservaRelatorioDTO;
 import java.time.Duration;
 import java.util.List;
 
@@ -67,5 +69,30 @@ public class ReservaService {
         }
 
         reserva.setValorTotal(valorQuadra + valorServicos);
+    }
+
+
+    public List<ReservaRelatorioDTO> gerarRelatorioReservas() {
+
+        List<Reserva> reservas = repository.findAll();
+
+        return reservas.stream().map(reserva -> {
+
+            String servicos = reserva.getServicos()
+                    .stream()
+                    .map(Servico::getNome)
+                    .collect(Collectors.joining(", "));
+
+            String horario = reserva.getHorarioInicial()
+                    + " - " +
+                    reserva.getHorarioFinal();
+
+            return new ReservaRelatorioDTO(
+                    reserva.getQuadra().getNome(),
+                    horario,
+                    servicos
+            );
+
+        }).toList();
     }
 }

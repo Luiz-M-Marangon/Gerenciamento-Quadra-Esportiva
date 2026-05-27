@@ -4,50 +4,56 @@
     <title>Reserva</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
+
 <div th:replace="~{fragments/navbar :: navbar}"></div>
-<div class="container mt-4">
-    <h1>Cadastro de Reserva</h1>
-    <div th:if="${erro}" class="alert alert-danger" th:text="${erro}"></div>
 
-    <form th:action="@{/reservas/salvar}" th:object="${reserva}" method="post">
+<main class="container mt-5 flex-grow-1">
+    <div class="container mt-4">
+        <h1>Cadastro de Reserva</h1>
+        <div th:if="${erro}" class="alert alert-danger" th:text="${erro}"></div>
 
-        <input type="hidden" th:field="*{id}">
-        <div class="mb-3">
-            <label>Data</label>
-            <input type="date" th:field="*{data}" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label>Horário Inicial</label>
-            <input type="time" th:field="*{horarioInicial}" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label>Horário Final</label>
-            <input type="time" th:field="*{horarioFinal}" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label>Responsável</label>
-            <input type="text" th:field="*{responsavel}" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label>Quadra</label>
-            <select th:field="*{quadra}" class="form-select" required>
-                <option value="">Selecione</option>
-                <option th:each="q : ${quadras}" th:value="${q.id}" th:text="${q.nome}"></option>
-            </select>
-        </div>
+        <form th:action="@{/reservas/salvar}" th:object="${reserva}" method="post">
 
-        <div class="mb-3">
-            <label>Serviços</label>
-            <select multiple th:field="*{servicos}" class="form-select">
-                <option th:each="s : ${servicos}" th:value="${s.id}" th:text="${s.nome}"></option>
-            </select>
-        </div>
+            <input type="hidden" th:field="*{id}">
+            <div class="mb-3">
+                <label>Data</label>
+                <input type="date" th:field="*{data}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Horário Inicial</label>
+                <input type="time" th:field="*{horarioInicial}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Horário Final</label>
+                <input type="time" th:field="*{horarioFinal}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Responsável</label>
+                <input type="text" th:field="*{responsavel}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Quadra</label>
+                <select th:field="*{quadra}" class="form-select" required>
+                    <option value="">Selecione</option>
+                    <option th:each="q : ${quadras}" th:value="${q.id}" th:text="${q.nome}"></option>
+                </select>
+            </div>
 
-        <button type="submit" class="btn btn-success">Salvar</button>
+            <div class="mb-3">
+                <label>Serviços</label>
+                <select multiple th:field="*{servicos}" class="form-select">
+                    <option th:each="s : ${servicos}" th:value="${s.id}" th:text="${s.nome}"></option>
+                </select>
+            </div>
 
-        <a href="/reservas" class="btn btn-secondary">Voltar</a>
-    </form>
-</div>
+            <button type="submit" class="btn btn-success">Salvar</button>
+
+            <a href="/reservas" class="btn btn-secondary">Voltar</a>
+        </form>
+    </div>
+</main>
+
+<div class="mt-auto" th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
