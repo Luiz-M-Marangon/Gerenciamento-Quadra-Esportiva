@@ -25,8 +25,15 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/css/**", "/js/**", "/images/**").permitAll()
-                        .requestMatchers("/usuarios/**").hasRole("ADMIN")
+
+                        //APENAS ADM TEM ACESSO
+                        .requestMatchers("/quadras/**").hasRole("ADMIN")
+                        .requestMatchers("/servicos/**").hasRole("ADMIN")
+
+                        //TODOS TEM ACESSO
+                        .requestMatchers("/reservas/**").authenticated()
+
+                        //QUALQUER OUTRA ROTA AUTENTICADA
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
