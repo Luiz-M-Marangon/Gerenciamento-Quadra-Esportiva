@@ -1,8 +1,8 @@
 Jakarta with itext and two pieces of shake.
 
-
+--------------------------
 Insert em banco de dados para Usuário:
-------------------------------
+
 INSERT INTO usuario
 VALUES (1, 'ADMIN', 'admin', 'admin')
 INSERT INTO usuario
@@ -15,7 +15,7 @@ Usário Administrador=
 user: admin
 
 senha: admin
-------
+
 
 
 ------
@@ -24,4 +24,4 @@ Usuário Padrão=
 user: user
 
 senha: user
------
+
