@@ -4,7 +4,7 @@ Jakarta with itext and two pieces of shake.
 Insert em banco de dados para Usuário:
 
 INSERT INTO usuario
-VALUES (1, 'ADMIN', 'admin', 'admin')
+VALUES (1, 'ADMIN', '$2a$12$fBKmolz05hElfyc8XtCCL.67d84RuwcL1K/2pf7/VwJI20BySRCmu', 'admin')
 INSERT INTO usuario
 VALUES (2, 'USER', '$2a$12$aL75RfovzyCkdJWZqQyEW.SuMnVEGuXhfIyJaq84UEfiPzf3p/F6G', 'user')
 --------------------------
