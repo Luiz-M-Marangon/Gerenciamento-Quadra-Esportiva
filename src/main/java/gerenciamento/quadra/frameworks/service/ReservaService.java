@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.util.stream.Collectors;
 import gerenciamento.quadra.frameworks.dto.ReservaRelatorioDTO;
 import java.time.Duration;
@@ -104,5 +106,9 @@ public class ReservaService {
 
     public List<Reserva> buscarPorTipoQuadra(String esporte) {
         return repository.buscarPorTipoQuadra(esporte);
+    }
+
+    public List<Reserva> buscarEntreDatas(LocalDate inicio, LocalDate fim) {
+        return repository.buscarEntreDatas(inicio, fim);
     }
 }

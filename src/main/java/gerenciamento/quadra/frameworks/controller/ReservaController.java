@@ -153,4 +153,13 @@ public class ReservaController {
 
         return "reservas/busca-tipo";
     }
+
+    @GetMapping("/buscar-data")
+    public String buscarData(@RequestParam(required = false) LocalDate inicio,
+            @RequestParam(required = false) LocalDate fim, Model model) {
+        if (inicio != null && fim != null) {
+            model.addAttribute("reservas", reservaService.buscarEntreDatas(inicio, fim));
+        }
+        return "reservas/busca-data";
+    }
 }
