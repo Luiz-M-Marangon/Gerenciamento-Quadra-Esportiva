@@ -20,19 +20,35 @@
                 <th>Horário</th>
                 <th>Responsável</th>
                 <th>Quadra</th>
-                <th>Valor Total</th>
+                <th>Serviços</th>
+                <th>Valor Total (Por Hora)</th>
                 <th width="180">Ações</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="r : ${reservas}">
+            <tr th:each="r : ${reservasPage.content}">
                 <td th:text="${r.id}"></td>
                 <td th:text="${r.data}"></td>
                 <td>
-                    <span th:text="${r.horarioInicial}"></span>às<span th:text="${r.horarioFinal}"></span>
+                    <span th:text="${r.horarioInicial}"></span> às <span th:text="${r.horarioFinal}"></span>
                 </td>
                 <td th:text="${r.responsavel}"></td>
                 <td th:text="${r.quadra.nome}"></td>
+                <!-- SERVIÇOS -->
+                <td>
+                    <!-- QUANDO POSSUI SERVIÇOS ALOCADOS NA RESERVA -->
+                    <span th:if="${r.servicos != null and !r.servicos.isEmpty()}">
+                        <span th:each="s, iter : ${r.servicos}">
+                            <span th:text="${s.nome}"></span>
+                            <span th:if="${!iter.last}">
+                                ,
+                            </span>
+                        </span>
+                    </span>
+                    <!-- QUANDO NãO POSSUI SERVIÇOS ALOCADOS NA RESERVA -->
+                    <span th:unless="${r.servicos != null and !r.servicos.isEmpty()}">
+                    </span>
+                </td>
                 <td th:text="${r.valorTotal}"></td>
                 <td>
                     <a th:href="@{/reservas/editar/{id}(id=${r.id})}" class="btn btn-warning btn-sm">Editar</a>
@@ -47,6 +63,38 @@
 
             Exportar PDF
         </a>
+
+        <!-- navegação pela paginção -->
+        <nav class="d-flex justify-content-end mt-3">
+            <ul class="pagination">
+
+                <li class="page-item" th:classappend="${reservasPage.first} ? 'disabled'">
+                    <a class="page-link"
+                       th:href="@{/reservas(page=${reservasPage.number - 1}, size=${reservasPage.size})}">
+                        Anterior
+                    </a>
+                </li>
+
+                <li class="page-item"
+                    th:each="i : ${#numbers.sequence(0, reservasPage.totalPages - 1)}"
+                    th:classappend="${i == reservasPage.number} ? 'active'">
+
+                    <a class="page-link"
+                       th:href="@{/reservas(page=${i}, size=${reservasPage.size})}"
+                       th:text="${i + 1}">
+                    </a>
+                </li>
+
+                <li class="page-item" th:classappend="${reservasPage.last} ? 'disabled'">
+                    <a class="page-link"
+                       th:href="@{/reservas(page=${reservasPage.number + 1}, size=${reservasPage.size})}">
+                        Próximo
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        <!-- navegação pela paginção -->
     </div>
 </main>
 

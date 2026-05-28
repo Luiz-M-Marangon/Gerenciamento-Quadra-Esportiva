@@ -4,6 +4,10 @@ import gerenciamento.quadra.frameworks.model.Reserva;
 import gerenciamento.quadra.frameworks.model.Servico;
 import gerenciamento.quadra.frameworks.repository.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.stream.Collectors;
 import gerenciamento.quadra.frameworks.dto.ReservaRelatorioDTO;
@@ -16,8 +20,10 @@ public class ReservaService {
     @Autowired
     private ReservaRepository repository;
 
-    public List<Reserva> listarTodas() {
-        return repository.findAll();
+    public Page<Reserva> listarPaginado(int page, int size){
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
+
+        return repository.findAll(pageable);
     }
 
     public Reserva buscarPorId(Long id) {

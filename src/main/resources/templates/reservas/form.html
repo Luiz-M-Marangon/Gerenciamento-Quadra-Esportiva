@@ -28,6 +28,47 @@
                 <label>Horário Final</label>
                 <input type="time" th:field="*{horarioFinal}" class="form-control" required>
             </div>
+
+
+            <!-- VALIDAÇÃO DE HORÁRIO -->
+            <small id="erroHorario" class="text-danger d-none">
+                O horário final não pode ser menor que o inicial.
+            </small>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+
+                    const inicio = document.getElementById("horarioInicial");
+                    const fim = document.getElementById("horarioFinal");
+                    const erro = document.getElementById("erroHorario");
+                    const form = inicio.closest("form");
+
+                    function validar() {
+                        if (!inicio.value || !fim.value) return true;
+
+                        if (fim.value < inicio.value) {
+                            erro.classList.remove("d-none");
+                            return false;
+                        } else {
+                            erro.classList.add("d-none");
+                            return true;
+                        }
+                    }
+
+                    inicio.addEventListener("change", validar);
+                    fim.addEventListener("change", validar);
+
+                    form.addEventListener("submit", function (e) {
+                        if (!validar()) {
+                            e.preventDefault();
+                        }
+                    });
+
+                });
+            </script>
+            <!-- VALIDAÇÃO DE HORÁRIO -->
+
+
             <div class="mb-3">
                 <label>Responsável</label>
                 <input type="text" th:field="*{responsavel}" class="form-control" required>

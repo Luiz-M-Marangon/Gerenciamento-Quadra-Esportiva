@@ -7,6 +7,7 @@ import gerenciamento.quadra.frameworks.service.QuadraService;
 import gerenciamento.quadra.frameworks.service.ReservaService;
 import gerenciamento.quadra.frameworks.service.ServicoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,8 +37,15 @@ public class ReservaController {
     private ServicoService servicoService;
 
     @GetMapping
-    public String listar(Model model) {
-        model.addAttribute("reservas", reservaService.listarTodas());
+    public String listar(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "5") int size,
+        Model model){
+
+        Page<Reserva> reservas = reservaService.listarPaginado(page, size);
+
+        model.addAttribute("reservasPage", reservas);
+
         return "reservas/list";
     }
 
