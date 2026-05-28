@@ -13,11 +13,11 @@ VALUES (2, 'USER', '$2a$12$aL75RfovzyCkdJWZqQyEW.SuMnVEGuXhfIyJaq84UEfiPzf3p/F6G
 Usário Administrador=
 
 user: admin
-
 senha: admin
+
+
 
 Usuário Padrão=
 
 user: user
-
 senha: user
