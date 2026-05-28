@@ -44,7 +44,7 @@ public class ReservaService {
         );
 
         if (!conflitos.isEmpty()) {
-            throw new RuntimeException("Já existe reserva nesse horário.");
+            throw new RuntimeException("Já existe reserva nesse horário nesta mesma quadra.");
         }
 
         calcularValorTotal(reserva);
