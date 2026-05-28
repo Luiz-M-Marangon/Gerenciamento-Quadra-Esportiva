@@ -10,21 +10,17 @@
 
 <main class="container mt-5 flex-grow-1">
 
-    <form action="/reservas/buscar-tipo"
-          method="get"
-          class="row g-3 mb-4">
+    <form action="/reservas/buscar-tipo" method="get" class="row g-3 mb-4">
         <div class="col-md-6">
-            <input type="text"
-                   name="esporte"
-                   class="form-control"
-                   placeholder="Digite o esporte">
-
+            <select name="esporte" class="form-select">
+                <option value="">Selecione um esporte
+                </option>
+                <option th:each="e : ${esportes}" th:value="${e}" th:text="${e}"></option>
+            </select>
         </div>
         <div class="col-md-2">
 
-            <button type="submit"
-                    class="btn btn-dark">
-                Buscar
+            <button type="submit" class="btn btn-dark">Buscar
             </button>
 
         </div>
@@ -48,17 +44,11 @@
         <tbody>
 
         <tr th:each="r : ${reservas}">
-
             <td th:text="${r.id}"></td>
-
             <td th:text="${r.data}"></td>
-
             <td th:text="${r.quadra.nome}"></td>
-
             <td th:text="${r.quadra.esporte}"></td>
-
             <td th:text="${r.valorTotal}"></td>
-
         </tr>
 
         </tbody>
@@ -66,7 +56,7 @@
     </table>
 
 
-    <div class="mt-auto" th:replace="fragments/footer :: footer"></div>
+    <div class="mt-auto" th:replace="~{fragments/footer :: footer}"></div>
 </main>
 </body>
 </html>

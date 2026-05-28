@@ -145,9 +145,8 @@ public class ReservaController {
     }
 
     @GetMapping("/buscar-tipo")
-    public String buscarTipo(
-            @RequestParam(required = false) String esporte,
-            Model model) {
+    public String buscarTipo(@RequestParam(required = false) String esporte, Model model) {
+        model.addAttribute("esportes", quadraService.listarEsportes());
         if (esporte != null && !esporte.isEmpty()) {
             model.addAttribute("reservas", reservaService.buscarPorTipoQuadra(esporte));
         }

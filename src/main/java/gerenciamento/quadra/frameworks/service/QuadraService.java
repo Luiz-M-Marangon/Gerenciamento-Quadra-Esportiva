@@ -33,4 +33,8 @@ public class QuadraService {
     public void excluir(Long id) {
         repository.deleteById(id);
     }
+
+    public List<String> listarEsportes() {
+        return repository.listarEsportes();
+    }
 }
