@@ -101,4 +101,8 @@ public class ReservaService {
 
         }).toList();
     }
+
+    public List<Reserva> buscarPorTipoQuadra(String esporte) {
+        return repository.buscarPorTipoQuadra(esporte);
+    }
 }

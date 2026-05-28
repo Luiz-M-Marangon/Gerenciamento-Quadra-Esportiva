@@ -21,6 +21,7 @@ import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -141,5 +142,16 @@ public class ReservaController {
         document.add(tabela);
 
         document.close();
+    }
+
+    @GetMapping("/buscar-tipo")
+    public String buscarTipo(
+            @RequestParam(required = false) String esporte,
+            Model model) {
+        if (esporte != null && !esporte.isEmpty()) {
+            model.addAttribute("reservas", reservaService.buscarPorTipoQuadra(esporte));
+        }
+
+        return "reservas/busca-tipo";
     }
 }

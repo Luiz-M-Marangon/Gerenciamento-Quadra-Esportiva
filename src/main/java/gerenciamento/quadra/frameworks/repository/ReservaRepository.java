@@ -24,4 +24,7 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
             LocalTime inicio,
             LocalTime fim
     );
+
+    @Query("SELECT r FROM Reserva r WHERE r.quadra.esporte = :esporte")
+    List<Reserva> buscarPorTipoQuadra(String esporte);
 }
