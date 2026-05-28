@@ -29,9 +29,20 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
     List<Reserva> buscarPorTipoQuadra(String esporte);
 
     @Query("""
-        SELECT r FROM Reserva r
-        WHERE r.data BETWEEN :inicio AND :fim
-        """)
-    List<Reserva> buscarEntreDatas(LocalDate inicio, LocalDate fim
-    );
+    SELECT r FROM Reserva r
+    WHERE r.data BETWEEN :inicio AND :fim
+    """)
+    List<Reserva> buscarEntreDatas(LocalDate inicio, LocalDate fim);
+
+    @Query("""
+    SELECT r FROM Reserva r
+    WHERE r.responsavel = :responsavel
+    """)
+    List<Reserva> buscarPorResponsavel(String responsavel);
+
+    @Query("""
+    SELECT DISTINCT r.responsavel
+    FROM Reserva r
+    """)
+    List<String> listarResponsaveis();
 }

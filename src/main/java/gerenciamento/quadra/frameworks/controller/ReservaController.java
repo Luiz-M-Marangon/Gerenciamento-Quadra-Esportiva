@@ -162,4 +162,13 @@ public class ReservaController {
         }
         return "reservas/busca-data";
     }
+
+    @GetMapping("/buscar-cliente")
+    public String buscarCliente(@RequestParam(required = false) String responsavel, Model model) {
+        model.addAttribute("responsaveis", reservaService.listarResponsaveis());
+        if (responsavel != null && !responsavel.isEmpty()) {
+            model.addAttribute("reservas", reservaService.buscarPorResponsavel(responsavel));
+        }
+        return "reservas/busca-cliente";
+    }
 }

@@ -111,4 +111,12 @@ public class ReservaService {
     public List<Reserva> buscarEntreDatas(LocalDate inicio, LocalDate fim) {
         return repository.buscarEntreDatas(inicio, fim);
     }
+
+    public List<Reserva> buscarPorResponsavel(String responsavel) {
+        return repository.buscarPorResponsavel(responsavel);
+    }
+
+    public List<String> listarResponsaveis() {
+        return repository.listarResponsaveis();
+    }
 }
